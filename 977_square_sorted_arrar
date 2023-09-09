@@ -1,0 +1,23 @@
+977 squares of a sorted array
+https://leetcode.com/problems/squares-of-a-sorted-array/
+
+
+learning notes 视频 https://www.bilibili.com/video/BV1QB4y1D7ep 
+[-5,1,2,3]
+1/ square all the elements then sort time complexity: o(n*logn) depends on the sort/quick sort;
+2/ two pointers: o(logn)
+  平方之后由大到小的趋势 从两边向中间；所以可以两个指针操作由两遍向中间合拢
+
+定义新数组平方后：
+vector for result
+k=numsize-1 用while更好理解
+for (i=0,j=num.size-1; i<=j) ///为什要i=j, 如果只有小于 会少做一个；不用i++
+ if(nums[i]^2>nums[j]^2) {
+  result[k]=nums[i]^2;
+  k--;
+  i++;
+ } else {
+   result[k--]=nums[j]^2;
+   j--;
+ }
+ return result;
