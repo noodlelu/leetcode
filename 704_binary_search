@@ -1,0 +1,47 @@
+打卡day1 704 binary search
+
+https://leetcode.com/problems/binary-search/description/
+
+learning notes:
+数组定义：相似且连续
+区间定义：
+1/ 左闭右闭 [left,right]
+2/ 左闭又开 [left,right)
+
+while 循环边界 mid 定义
+注意不同边界定义会影响 left<=right or left<right
+[1,2,3,4,5,6]
+
+
+solution:
+1/左闭右闭
+int left=0;
+int right=length.nums(size)-1; ---因为循环从0开始，len=6,如过不-1 循环会越界
+while (left<=right) {
+  int mid=left+(right-left)/2;
+  if (nums[mid]>target) {  ---右边界>mid，target在左半边，可以缩小右边界
+    right=mid-1; --因为mid一定大于 target且右闭,可以从mid-1查找,
+  } else if (nums[mid]<target){
+    left=mid+1;
+  } else {
+    return mid;
+  }
+}
+return -1;
+
+
+2/ 左闭又开 [left,right)
+int left=0;
+int right=nums.length;
+while (left<right) {
+  int mid=left+(right-left)/2;
+  if (nums[mid]>target){
+     right=mid;
+  } else if(nums[mid]<target) {
+     left=mid+1;
+  } else {
+    return mid;
+  }
+}
+return -1;
+
