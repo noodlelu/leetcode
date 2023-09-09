@@ -1,0 +1,47 @@
+leetcode 27 remove element
+
+https://leetcode.com/problems/remove-element/
+
+solution for my reference: https://leetcode.com/problems/remove-element/solutions/3670940/best-100-c-java-python-beginner-friendly/
+learning note:
+1/erase time complexity is o(n) not o(1)
+2/not delete, but overwrite
+3/two pointers by o(n) like erase:
+  [1,2,3,4,3,5]
+  fast= new array need element
+  slow= the position for new arrary 用来获取新数组的元素
+  but still under the same arrary  用来获取新数组需要更新的下标位置 
+  都在一个数组进行操作
+
+  slow=0
+  for (fast=0; fast<num.size; fast++)) ///which is to update the fast
+    if (nums[fast] != value):{
+      nums[slow]=nums[fast]；
+       slow++}
+  return slow
+
+
+practice 1:
+int slow=0;
+int fast=0;
+int len=nums.length();
+while (fast<len){
+  if(nums[fast]!=val){
+    nums[slow]=nums[fast];
+    slow=slow+1;
+  }
+  fast=fast+1;
+}
+return slow;
+
+
+practice2:
+int index=0; ///slow
+for (int i=0; i<nums.length; i++){ ///i is fast
+  if(nums[i] !=val) {
+    nums[index]=nums[i];
+    index ++
+  }
+}
+return index;
+
