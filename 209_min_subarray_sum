@@ -1,0 +1,24 @@
+209 minimum size subarray sum
+https://leetcode.com/problems/minimum-size-subarray-sum/
+
+learning notes 视频 https://www.bilibili.com/video/BV1tZ4y1q7XE/
+1/一般暴力做法 枚举 用2层for循环： 第一层控制开始 第二层控制终止 把这个区间内所有的组合找出 然后判>=s的最小长度
+2/moving window 
+ 一个for (j); j代表start or end point? j是索引下标
+ 假设 j=start;then end point 还是要loop一遍所有位置，which is same as 暴力做法
+ so j=end point; key point for moving widow is how to move the START point!
+ i=0 //start point;
+ result=max
+ for (j=0;j<=nums.size;j++){
+   sum +=nums[j]; ///当前滑动窗口内所有元素的集合
+   while (sum>=s){ ///if or while;  [1,1,1,1,1,100] 如果是if 第一次就结束了 但是我们需要持续更新滑动窗口的逻辑所以
+     ///while 可以来维持滑动窗口中sum的直小于target num
+     sublen=j-i+1;
+     result=min(sum,sublen);
+     sum=sum-nums[i]；
+     i++;
+   }
+ }
+ return result;
+ 
+ 
