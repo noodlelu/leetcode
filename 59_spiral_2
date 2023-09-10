@@ -1,0 +1,27 @@
+leetcode 59 Spiral Matrix 2
+https://leetcode.com/problems/spiral-matrix-ii/
+
+learning notes 视频 https://www.bilibili.com/video/BV1SL4y1N7mV/
+重点：4个边界点；循环不变量：对边界的处理规则一样 左闭又开
+n
+while 转几圈 n/2:因为圈是对称的，左边右边 所以是边长n/2;
+如过n是奇数：mod(n/2 ==1) 填充的数组单独付值
+因为起时位置每一圈都在变;横向改变j;正方形 i=j;可以用具体数值去检查是否越界 坐标(i,j)
+start(i=0;j=0);
+offset=1;
+count=1
+while(n/2){
+  for (j=starty;j<n-offset;j++){
+    nums[startx][j]=count++;
+  }
+  for (i=startx;i<n-offset;i++){
+    nums[i][j]=count++;
+  }
+  for (j>starty;j--){
+    nums[i][j]=count++;
+  }
+  for (i>startx;i--){
+    nums[i][j]=count++;
+  }
+}
+
