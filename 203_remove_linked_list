@@ -1,0 +1,30 @@
+leetcode 203 remove linded list
+https://leetcode.com/problems/remove-linked-list-elements/
+
+learning notes:https://www.bilibili.com/video/BV18B4y1s7R9/
+
+1/头节点 or not, 删除方法不一样
+while (head!=null&& head.val==target), 要取value of head 如过head is null,操作空指针
+  head=head->next
+如过链表是11111,target也是1，移除头节点是持续移除的过程所以要用while
+cur=head; //单向链表无法向前找 所以不能从head-next开始
+while(cur!=null && cur->!=null){
+  if (cur->next.val==target){
+    cur->next=cur->next->next
+  } 
+  else {cur=cur->next}
+}
+return head;
+
+2/虚拟头节点： dummy head;
+  if head, then dummy head 指向head 统一规则来删
+  dummy_head=new();
+  dummy_head.next=head;
+  cur=dummy_head ///临时指针 遍历链表 因为要删是cur.next
+  while (cur.next!=null){
+   if( cur.next.val=target){
+    cur.next=cur.next.next
+  } else {cur=cur.next}
+  return dummy.head.next // 不能return head因为head有可能已经被删除
+
+  
