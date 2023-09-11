@@ -1,0 +1,56 @@
+leetcode 707 design linked list
+https://leetcode.com/problems/design-linked-list/
+
+learning notes: https://www.bilibili.com/video/BV1FU4y1X7WD/
+实现5个函数
+1/获取第几个节点的直； //这道题从0开始，获取第0个节点是链表的头节点
+2/头部插入节点；
+3/尾部插入节点
+4/第几个节点插入节点
+5/删除第几个节点
+
+1/dummy_head
+n<0 不合法 n>size-1也不合法，n=size-1即为链表最后一个节点
+cur=dummy_head.next //为什么要定义一个新临时指针遍历，因为最后要返回头节点；如果直接操作头节点，头节点的直会被改变
+while(n ){///想清楚极端情况，即为返回0节点是否出现空指针异常
+  cure=cur.next;
+  n--;
+}
+return cur;
+
+2/插入节点是什么流程: 先建个新链表
+new_node= new node();
+dummy_head.next=new_node;
+new_node.next=head 这个顺序不对 因为dummy_head 和head之间的联系已经没有了
+正确写法：
+new_node.next=dummy_head.next;
+dummu_head.next=new_node;
+size++;
+
+3/尾部插入节点
+当前遍历节点cur一定要指向尾部节点
+cur=dummy_head
+while (cur.next !=null){
+  cur=cur.next
+}
+cur.next=new_node;
+
+4/ 第n个节点是cur.next 一定要知道操作节点的前一个节点的指针 才能进行插入节点的操作
+cur=dummy_head;
+开始遍历寻找第n个节点，一定要保证第n个节点是cur.next
+while (n){
+  cur=cur.next;
+  n--;
+}
+new_node.next=cur.next;
+cur.next=new_node;
+size++;
+
+5/首先n 合法判断
+cur=dummy_head; 第n个节点是cur.next
+while (n) {
+cur=cur.next;
+n--;
+}
+cur.next=cur.next.next;
+size--
